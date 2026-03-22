@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-03-22T03:04:57.014Z",
+  "schemaVersion": "0.1.0",
+  "projectName": "Project Heartbeat MVP",
+  "repos": {
+    "app": "octo-org/heartbeat-app",
+    "screenshots": "octo-org/heartbeat-screenshots",
+    "social": "octo-org/heartbeat-social"
+  },
+  "enabledFeatures": [
+    "dailyIssueAgent",
+    "dependabot",
+    "screenshotAgent",
+    "socialAgent"
+  ],
+  "requiredSecrets": {
+    "githubToken": "GH_HEARTBEAT_TOKEN",
+    "screenshotsRepoToken": "GH_SCREENSHOTS_TOKEN",
+    "linkedInClientId": "LINKEDIN_CLIENT_ID",
+    "linkedInClientSecret": "LINKEDIN_CLIENT_SECRET",
+    "linkedInRefreshToken": "LINKEDIN_REFRESH_TOKEN"
+  }
+}

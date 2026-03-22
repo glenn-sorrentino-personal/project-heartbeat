@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Heartbeat</title>
+    <link rel="preconnect" href="https://api.github.com">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Project Heartbeat</p>
+        <h1>Static setup for GitHub-native maintenance agents.</h1>
+        <p class="hero-copy">
+          Configure three repositories, generate workflows and config, then hand execution off to GitHub Actions.
+        </p>
+      </header>
+
+      <main class="grid">
+        <section class="panel">
+          <h2>1. GitHub access</h2>
+          <p class="panel-copy">Use a fine-grained token in the current browser session to load repository suggestions.</p>
+          <label for="github-token">GitHub token</label>
+          <input id="github-token" name="githubToken" type="password" autocomplete="off" placeholder="github_pat_...">
+          <button id="load-repos" type="button">Load repositories</button>
+          <p id="repo-status" class="status">No repositories loaded yet.</p>
+        </section>
+
+        <section class="panel">
+          <h2>2. Project mapping</h2>
+          <div class="field-grid">
+            <div>
+              <label for="project-name">Project name</label>
+              <input id="project-name" name="projectName" type="text">
+            </div>
+            <div>
+              <label for="project-owner">GitHub project owner</label>
+              <input id="project-owner" name="projectOwner" type="text" placeholder="org-or-user">
+            </div>
+            <div>
+              <label for="project-number">GitHub project number</label>
+              <input id="project-number" name="projectNumber" type="number" min="1">
+            </div>
+            <div>
+              <label for="daily-schedule">Daily issue schedule</label>
+              <input id="daily-schedule" name="dailySchedule" type="text" placeholder="0 14 * * 1-5">
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div>
+              <label for="app-repo">App repo</label>
+              <input id="app-repo" name="appRepo" list="repo-options" type="text" placeholder="owner/app-repo">
+            </div>
+            <div>
+              <label for="screenshots-repo">Screenshots repo</label>
+              <input id="screenshots-repo" name="screenshotsRepo" list="repo-options" type="text" placeholder="owner/screenshots-repo">
+            </div>
+            <div>
+              <label for="social-repo">Social repo</label>
+              <input id="social-repo" name="socialRepo" list="repo-options" type="text" placeholder="owner/social-repo">
+            </div>
+            <div>
+              <label for="issue-label">Daily issue label</label>
+              <input id="issue-label" name="issueLabel" type="text" placeholder="maintenance">
+            </div>
+          </div>
+          <datalist id="repo-options"></datalist>
+        </section>
+
+        <section class="panel">
+          <h2>3. Agent configuration</h2>
+          <div class="toggle-row">
+            <label><input id="enable-daily" name="dailyIssueAgent" type="checkbox"> Daily Issue Agent</label>
+            <label><input id="enable-dependabot" name="dependabot" type="checkbox"> Dependabot</label>
+            <label><input id="enable-screenshots" name="screenshotAgent" type="checkbox"> Screenshot Agent</label>
+            <label><input id="enable-social" name="socialAgent" type="checkbox"> Social Agent</label>
+          </div>
+
+          <div class="field-grid">
+            <div>
+              <label for="capture-command">Screenshot capture command</label>
+              <input id="capture-command" name="captureCommand" type="text" placeholder="npm run screenshots">
+            </div>
+            <div>
+              <label for="screenshot-schedule">Screenshot schedule</label>
+              <input id="screenshot-schedule" name="screenshotSchedule" type="text" placeholder="0 16 * * 1-5">
+            </div>
+            <div>
+              <label for="screenshot-output-directory">Screenshot output directory</label>
+              <input id="screenshot-output-directory" name="screenshotOutputDirectory" type="text" placeholder="heartbeat-artifacts/screenshots">
+            </div>
+            <div>
+              <label for="linkedin-organization-urn">LinkedIn organization URN</label>
+              <input id="linkedin-organization-urn" name="linkedInOrganizationUrn" type="text" placeholder="urn:li:organization:123456">
+            </div>
+            <div>
+              <label for="publishing-mode">LinkedIn publishing mode</label>
+              <select id="publishing-mode" name="publishingMode">
+                <option value="manual">Manual</option>
+                <option value="semi-manual">Semi-manual</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>4. Validation and export</h2>
+          <p class="panel-copy">The exported ZIP contains repo-scoped workflows, scripts, docs, and config files.</p>
+          <button id="generate-package" type="button">Generate MVP ZIP</button>
+          <div id="diagnostics" class="diagnostics"></div>
+        </section>
+
+        <section class="panel panel-wide">
+          <div class="split-header">
+            <h2>Config preview</h2>
+            <p>Updated locally as you edit the form.</p>
+          </div>
+          <pre id="config-preview" class="code-block"></pre>
+        </section>
+
+        <section class="panel panel-wide">
+          <div class="split-header">
+            <h2>Package preview</h2>
+            <p>Shows the file list that will be written into the ZIP.</p>
+          </div>
+          <pre id="package-preview" class="code-block"></pre>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

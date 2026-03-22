@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "0.1.0",
+  "projectName": "Project Heartbeat MVP",
+  "github": {
+    "projectOwner": "octo-org",
+    "projectNumber": "7"
+  },
+  "repos": {
+    "app": "octo-org/heartbeat-app",
+    "screenshots": "octo-org/heartbeat-screenshots",
+    "social": "octo-org/heartbeat-social"
+  },
+  "features": {
+    "dailyIssueAgent": true,
+    "dependabot": true,
+    "screenshotAgent": true,
+    "socialAgent": true
+  },
+  "daily": {
+    "schedule": "0 14 * * 1-5",
+    "label": "maintenance",
+    "issueTitleTemplate": "Daily heartbeat: {{date}}",
+    "projectFieldName": "Agent Eligible"
+  },
+  "screenshot": {
+    "captureCommand": "npm run screenshots",
+    "schedule": "0 16 * * 1-5",
+    "outputDirectory": "heartbeat-artifacts/screenshots",
+    "publishBranch": "main"
+  },
+  "social": {
+    "network": "linkedin",
+    "organizationUrn": "urn:li:organization:123456",
+    "publishingMode": "manual",
+    "artifactDirectory": "heartbeat-artifacts/social"
+  },
+  "secrets": {
+    "githubToken": "GH_HEARTBEAT_TOKEN",
+    "screenshotsRepoToken": "GH_SCREENSHOTS_TOKEN",
+    "linkedInClientId": "LINKEDIN_CLIENT_ID",
+    "linkedInClientSecret": "LINKEDIN_CLIENT_SECRET",
+    "linkedInRefreshToken": "LINKEDIN_REFRESH_TOKEN"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "project-heartbeat",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "generate:samples": "node scripts/generate-sample-output.mjs",
+    "smoke": "node scripts/smoke-check.mjs"
+  }
+}
+
